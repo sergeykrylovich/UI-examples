@@ -19,34 +19,34 @@ public class MainPage extends BasePage {
     }
 
 
-    public MainPage clickOnElements() {
+    public ElementsPage clickOnElements() {
         driver.findElement(elementsBtn).click();
-        return this;
+        return new ElementsPage(driver);
     }
 
-    public MainPage clickOnForms() {
+    public FormsPage clickOnForms() {
         driver.findElement(formsBtn).click();
-        return this;
+        return new FormsPage(driver);
     }
 
-    public MainPage clickOnFrames() {
+    public FramesPage clickOnFrames() {
         driver.findElement(framesBtn).click();
-        return this;
+        return new FramesPage(driver);
     }
 
-    public MainPage clickOnWidgets() {
+    public WidgetsPage clickOnWidgets() {
         driver.findElement(widgetsBtn).click();
-        return this;
+        return new WidgetsPage(driver);
     }
 
-    public MainPage clickOnInteractions() {
+    public InteractionsPage clickOnInteractions() {
         driver.findElement(interactionsBtn).click();
-        return this;
+        return new InteractionsPage(driver);
     }
 
-    public MainPage clickOnGame() {
+    public GamePage clickOnGame() {
         driver.findElement(gameBtn).click();
-        return this;
+        return new GamePage(driver);
     }
 
 

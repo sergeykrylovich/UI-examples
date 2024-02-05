@@ -1,4 +1,10 @@
 package ui.pages;
 
-public class WidgetsPage {
+import org.openqa.selenium.WebDriver;
+import ui.BasePage;
+
+public class WidgetsPage extends BasePage {
+    public WidgetsPage(WebDriver driver) {
+        super(driver);
+    }
 }

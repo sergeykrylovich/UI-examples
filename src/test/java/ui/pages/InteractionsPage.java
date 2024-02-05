@@ -3,10 +3,8 @@ package ui.pages;
 import org.openqa.selenium.WebDriver;
 import ui.BasePage;
 
-public class FormsPage extends BasePage {
-
-
-    public FormsPage(WebDriver driver) {
+public class InteractionsPage extends BasePage {
+    public InteractionsPage(WebDriver driver) {
         super(driver);
     }
 }
