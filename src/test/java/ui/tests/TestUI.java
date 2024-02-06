@@ -2,6 +2,7 @@ package ui.tests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,12 +10,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ui.pages.MainPage;
+import ui.pages.elements.TextBoxPage;
 
 import java.time.Duration;
 
 public class TestUI {
     WebDriver driver = new ChromeDriver();
     WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+    @BeforeEach
+    public void setUp() {
+        driver.get("http://85.192.34.140:8081");
+    }
 
     @Test
     public void testOpenURL() throws InterruptedException {
@@ -41,7 +49,7 @@ public class TestUI {
         driver.findElement(elementsBtn).click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(textBox));
         driver.findElement(textBox).click();
-        driver.findElement(userName).click();
+        //driver.findElement(userName).click();
         driver.findElement(userName).sendKeys(name);
         driver.findElement(userEmail).click();
         driver.findElement(userEmail).sendKeys(email);
@@ -57,6 +65,22 @@ public class TestUI {
 
 
 
+        Thread.sleep(5000);
+    }
+
+    @Test
+    public void textBoxTest() throws InterruptedException {
+
+        MainPage mainPage = new MainPage(driver);
+        TextBoxPage textBoxPage = mainPage.clickOnElements()
+                .clickTextBoxMenu()
+                .fillFullName("Valera")
+                .fillEmail("222@mail.ru")
+                .fillCurrentAddress("Minsk")
+                .fillPermanentAddress("Moscow")
+                .clickSubmitButton();
+
+        System.out.println(textBoxPage.getResultFullName());
         Thread.sleep(5000);
     }
 

@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
+
 public class BasePage {
 
     protected WebDriver driver;
@@ -33,5 +35,8 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(imgMain));
     }
 
+    public void waitForElementAppear(By element) {
+        wait.until(visibilityOfElementLocated(element));
+    }
 
 }
