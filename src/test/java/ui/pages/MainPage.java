@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ui.BasePage;
 import ui.pages.elements.ElementsPage;
+import ui.pages.forms.FormsPage;
+import ui.pages.frames.FramesPage;
 
 public class MainPage extends BasePage {
 

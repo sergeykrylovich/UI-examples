@@ -1,4 +1,4 @@
-package ui.pages;
+package ui.pages.forms;
 
 import org.openqa.selenium.WebDriver;
 import ui.BasePage;

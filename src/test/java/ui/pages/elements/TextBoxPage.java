@@ -60,8 +60,24 @@ public class TextBoxPage extends BasePage {
     }
 
     public String getResultFullName() {
-        String nameText = driver.findElement(resultFullName).getText();
-        return nameText;
+        return getTextFromResult(resultFullName);
+    }
+
+    public String getResultEmail() {
+        return getTextFromResult(resultEmail);
+    }
+
+    public String getResultCurrentAddress() {
+        return getTextFromResult(resultCurrentAddress);
+    }
+
+    public String getResultPermanentAddress() {
+        return getTextFromResult(resultPermanentAddress);
+    }
+
+    private String getTextFromResult(By element) {
+        String text = driver.findElement(element).getText();
+        return text.substring(text.indexOf(":") + 1);
     }
 
 

@@ -1,10 +1,12 @@
 package ui.tests;
 
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,73 +17,43 @@ import ui.pages.elements.TextBoxPage;
 
 import java.time.Duration;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class TestUI {
     WebDriver driver = new ChromeDriver();
-    WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     @BeforeEach
     public void setUp() {
         driver.get("http://85.192.34.140:8081");
-    }
-
-    @Test
-    public void testOpenURL() throws InterruptedException {
-        String name = "Joohn Cally";
-        String email = "aasd@mail.ru";
-        String city = "Minsk";
-        String address = "sssssssssssssssssssssssssssssssssss";
-        By textBox = By.xpath("//li[@id='item-0']//span[text()='Text Box']");
-        By elementsBtn = By.xpath("//h5[text()='Elements']");
-        By userName = By.xpath("//input[@id='userName']");
-        By userEmail = By.xpath("//input[@id='userEmail']");
-        By currentAddress = By.xpath("//textarea[@id='currentAddress']");
-        By permanentAddress = By.xpath("//textarea[@id='permanentAddress']");
-        By submitBtn = By.xpath("//button[@id='submit']");
-        By resultName = By.xpath("//p[@id='name']");
-        By resultEmail = By.xpath("//p[@id='email']");
-        By resultCurrentAddres = By.xpath("//p[@id='currentAddress']");
-        By resultPermanentAddress = By.xpath("//p[@id='permanentAddress']");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        driver.manage().window().maximize();
-
-        driver.get("http://85.192.34.140:8081");
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(elementsBtn));
-        driver.findElement(elementsBtn).click();
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(textBox));
-        driver.findElement(textBox).click();
-        //driver.findElement(userName).click();
-        driver.findElement(userName).sendKeys(name);
-        driver.findElement(userEmail).click();
-        driver.findElement(userEmail).sendKeys(email);
-        driver.findElement(currentAddress).click();
-        driver.findElement(currentAddress).sendKeys(city);
-        driver.findElement(permanentAddress).click();
-        driver.findElement(permanentAddress).sendKeys(address);
-        driver.findElement(submitBtn).click();
-        Assertions.assertTrue(driver.findElement(resultName).getText().contains(name));
-        Assertions.assertTrue(driver.findElement(resultEmail).getText().contains(email));
-        Assertions.assertTrue(driver.findElement(resultCurrentAddres).getText().contains(city));
-        Assertions.assertTrue(driver.findElement(resultPermanentAddress).getText().contains(address));
-
-
-
-        Thread.sleep(5000);
+        driver.manage().window().setSize(new Dimension(1920, 1080));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
 
     @Test
     public void textBoxTest() throws InterruptedException {
 
+        String fullName = "Valera";
+        String email = "222@mail.ru";
+        String currentAddress = "Minsk";
+        String permanentAddress = "Moscow";
+
         MainPage mainPage = new MainPage(driver);
         TextBoxPage textBoxPage = mainPage.clickOnElements()
                 .clickTextBoxMenu()
-                .fillFullName("Valera")
-                .fillEmail("222@mail.ru")
-                .fillCurrentAddress("Minsk")
-                .fillPermanentAddress("Moscow")
+                .fillFullName(fullName)
+                .fillEmail(email)
+                .fillCurrentAddress(currentAddress)
+                .fillPermanentAddress(permanentAddress)
                 .clickSubmitButton();
 
-        System.out.println(textBoxPage.getResultFullName());
-        Thread.sleep(5000);
+        SoftAssertions.assertSoftly(softAssert -> {
+            softAssert.assertThat(textBoxPage.getResultFullName()).as("Full Name input").isEqualToIgnoringCase(fullName);
+            softAssert.assertThat(textBoxPage.getResultEmail()).as("Email input").isEqualToIgnoringCase(email);
+            softAssert.assertThat(textBoxPage.getResultCurrentAddress()).as("Current Address input").isEqualToIgnoringCase(currentAddress);
+            softAssert.assertThat(textBoxPage.getResultPermanentAddress()).as("Permanent Address input").isEqualToIgnoringCase(permanentAddress);
+        });
+
     }
 
     @AfterEach
