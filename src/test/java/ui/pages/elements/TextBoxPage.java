@@ -9,16 +9,16 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 
 public class TextBoxPage extends BasePage {
 
-    private By fullNameInput = By.xpath("//input[@id='userName']");
-    private By emailInput = By.xpath("//input[@id='userEmail']");
-    private By currentAddressInput = By.xpath("//textarea[@id='currentAddress']");
-    private By permanentAddressInput = By.xpath("//textarea[@id='permanentAddress']");
-    private By submitBtn = By.xpath("//button[@id='submit']");
-    private By resultFullName = By.xpath("//p[@id='name']");
-    private By resultEmail = By.xpath("//p[@id='email']");
-    private By resultCurrentAddress = By.xpath("//p[@id='currentAddress']");
-    private By resultPermanentAddress = By.xpath("//p[@id='permanentAddress']");
-    private By resultTable = By.xpath("//div[@id='output']");
+    private final By fullNameInput = By.xpath("//input[@id='userName']");
+    private final By emailInput = By.xpath("//input[@id='userEmail']");
+    private final By currentAddressInput = By.xpath("//textarea[@id='currentAddress']");
+    private final By permanentAddressInput = By.xpath("//textarea[@id='permanentAddress']");
+    private final By submitBtn = By.xpath("//button[@id='submit']");
+    private final By resultFullName = By.xpath("//p[@id='name']");
+    private final By resultEmail = By.xpath("//p[@id='email']");
+    private final By resultCurrentAddress = By.xpath("//p[@id='currentAddress']");
+    private final By resultPermanentAddress = By.xpath("//p[@id='permanentAddress']");
+    private final By resultTable = By.xpath("//div[@id='output']");
 
     public TextBoxPage(WebDriver driver) {
         super(driver);

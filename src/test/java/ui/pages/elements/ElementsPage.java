@@ -8,15 +8,15 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class ElementsPage extends BasePage {
 
-    private By textBoxMenu = By.xpath("//li[@id='item-0']//span[text()='Text Box']");
-    private By checkBoxMenu = By.xpath("//li[@id='item-1']//span[text()='Check Box']");
-    private By radioMenu = By.xpath("//li[@id='item-2']//span[text()='Radio Button']");
-    private By webTablesMenu = By.xpath("//li[@id='item-3']//span[text()='Web Tables']");
-    private By buttonsMenu = By.xpath("//li[@id='item-4']//span[text()='Buttons']");
-    private By linksMenu = By.xpath("//li[@id='item-5']//span[text()='Links']");
-    private By brokenLinksMenu = By.xpath("//li[@id='item-6']//span[text()='Broken Links - Images']");
-    private By uploadDownloadMenu = By.xpath("//li[@id='item-6']//span[text()='Upload and Download']");
-    private By dynamicPropertiesMenu = By.xpath("//li[@id='item-6']//span[text()='Dynamic Properties']");
+    private final By textBoxMenu = By.xpath("//li[@id='item-0']//span[text()='Text Box']");
+    private final By checkBoxMenu = By.xpath("//li[@id='item-1']//span[text()='Check Box']");
+    private final By radioMenu = By.xpath("//li[@id='item-2']//span[text()='Radio Button']");
+    private final By webTablesMenu = By.xpath("//li[@id='item-3']//span[text()='Web Tables']");
+    private final By buttonsMenu = By.xpath("//li[@id='item-4']//span[text()='Buttons']");
+    private final By linksMenu = By.xpath("//li[@id='item-5']//span[text()='Links']");
+    private final By brokenLinksMenu = By.xpath("//li[@id='item-6']//span[text()='Broken Links - Images']");
+    private final By uploadDownloadMenu = By.xpath("//li[@id='item-6']//span[text()='Upload and Download']");
+    private final By dynamicPropertiesMenu = By.xpath("//li[@id='item-6']//span[text()='Dynamic Properties']");
 
 
 
@@ -30,19 +30,19 @@ public class ElementsPage extends BasePage {
         return new TextBoxPage(driver);
     }
 
-    public ElementsPage clickCheckBoxMenu(WebDriver driver) {
+    public CheckBoxPage clickCheckBoxMenu() {
         wait.until(elementToBeClickable(checkBoxMenu));
         driver.findElement(checkBoxMenu).click();
-        return this;
+        return new CheckBoxPage(driver);
     }
 
-    public ElementsPage clickRadioMenu(WebDriver driver) {
+    public ElementsPage clickRadioMenu() {
         wait.until(elementToBeClickable(radioMenu));
         driver.findElement(radioMenu).click();
         return this;
     }
 
-    public ElementsPage clickWebTablesMenu(WebDriver driver) {
+    public ElementsPage clickWebTablesMenu() {
         wait.until(elementToBeClickable(webTablesMenu));
         driver.findElement(webTablesMenu).click();
         return this;
