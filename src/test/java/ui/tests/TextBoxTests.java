@@ -26,7 +26,7 @@ public class TextBoxTests {
     }
 
     @Test
-    public void textBoxTest() throws InterruptedException {
+    public void textBoxTest() {
 
         String fullName = "Valera";
         String email = "222@mail.ru";

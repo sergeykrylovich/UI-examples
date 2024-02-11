@@ -43,7 +43,7 @@ public class CheckBoxTests {
     }
 
     @Test
-    public void testClickOnAllCheckBoxes() throws InterruptedException {
+    public void testClickOnAllCheckBoxes() {
         MainPage mainPage = new MainPage(driver);
         List<String> textFromResult = mainPage.clickOnElements()
                 .clickCheckBoxMenu()
@@ -52,7 +52,8 @@ public class CheckBoxTests {
                 .clickOnCheckBox(WORDFILE)
                 .getTextFromResult();
 
-        //assertThat(textFromResult).contains(WORDFILE.toString());
+        assertThat(textFromResult).contains("wordFile");
+
 
 
     }
