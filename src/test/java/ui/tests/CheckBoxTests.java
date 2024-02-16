@@ -1,6 +1,5 @@
 package ui.tests;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +7,6 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ui.pages.MainPage;
-import ui.pages.elements.CheckBoxPage;
 
 import java.time.Duration;
 import java.util.List;
@@ -50,11 +48,9 @@ public class CheckBoxTests {
                 .clickOnExpandAllBtn()
                 .clickOnCheckBox(DOCUMENTS)
                 .clickOnCheckBox(WORDFILE)
-                .getTextFromResult();
+                .getListOfTextFromResult();
 
         assertThat(textFromResult).contains("wordFile");
-
-
 
     }
 

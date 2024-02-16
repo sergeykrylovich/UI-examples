@@ -35,7 +35,7 @@ public class CheckBoxPage extends BasePage {
     private final By downloadsToggleBtn = By.xpath("//label[@for='tree-node-downloads']//preceding-sibling::button");
     private final By expandAllBtn = By.xpath("//button[@class='rct-option rct-option-expand-all']");
     private final By collapseAllBtn = By.xpath("//button[@class='rct-option rct-option-collapse-all']");
-    private final By resultText = By.xpath("//div[@id='result']//span[@class='text-success']");
+
 
     public CheckBoxPage(WebDriver driver) {
         super(driver);
@@ -91,10 +91,7 @@ public class CheckBoxPage extends BasePage {
         return this;
     }
 
-    public List<String> getTextFromResult() {
-        List<WebElement> elements = driver.findElements(resultText);
-        return elements.stream().map(WebElement::getText).collect(Collectors.toList());
-    }
+
 
     public CheckBoxPage clickOnCheckBox(CheckBoxes checkBox) {
         switch (checkBox) {

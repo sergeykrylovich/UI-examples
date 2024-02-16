@@ -22,7 +22,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
     testImplementation "org.slf4j:slf4j-simple:$slf4jVersion"
     testImplementation "org.seleniumhq.selenium:selenium-java:4.11.0"
-    testImplementation "org.assertj:assertj-core:$assertJVersion"
+    implementation "org.assertj:assertj-core:$assertJVersion"
 
 }
 

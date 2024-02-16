@@ -42,10 +42,10 @@ public class ElementsPage extends BasePage {
         return this;
     }
 
-    public ElementsPage clickWebTablesMenu() {
+    public WebTablesPage clickWebTablesMenu() {
         wait.until(elementToBeClickable(webTablesMenu));
         driver.findElement(webTablesMenu).click();
-        return this;
+        return new WebTablesPage(driver);
     }
 
     public ElementsPage clickButtonsMenu(WebDriver driver) {
