@@ -47,6 +47,7 @@ public class WebTabletsTests {
                 .setSalaryInput(salary)
                 .setDepartmentInput(department)
                 .clickSubmitBtn()
+                .goToPageNumber(1)
                 .searchRecord(firstName)
                 .findResultInTable();
 

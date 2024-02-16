@@ -1,7 +1,9 @@
 package ui.pages.elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import ui.BasePage;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public class WebTablesPage extends BasePage {
     private final By submitBtn = By.xpath("//button[@id='submit']");
     private final By searchInput = By.xpath("//input[@id='searchBox']");
     private final By resultRecords = By.xpath("//div[@class='ReactTable -striped -highlight']//div[@class='rt-td']");
+    private final By jumpToPageInput = By.xpath("//input[@aria-label='jump to page']");
 
     public WebTablesPage(WebDriver driver) {
         super(driver);
@@ -76,6 +79,16 @@ public class WebTablesPage extends BasePage {
                 .filter(x -> x.trim().length() > 0)
                 .collect(Collectors.toList());
         return resultList;
+    }
+
+    public WebTablesPage goToPageNumber(int pageNumber) {
+        Actions actions = new Actions(driver);
+        actions.doubleClick(driver.findElement(jumpToPageInput))
+                .sendKeys(Integer.toString(pageNumber))
+                .sendKeys(Keys.ENTER)
+                .perform();
+
+        return this;
     }
 
 
