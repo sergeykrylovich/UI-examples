@@ -2,8 +2,14 @@ package ui.pages.elements;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v121.network.Network;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ui.BasePage;
+import ui.pages.MainPage;
+
+import java.util.Optional;
 
 public class LinksPage extends BasePage {
 
@@ -38,15 +44,43 @@ public class LinksPage extends BasePage {
         super(driver);
     }
 
-    public void clickOnHomeLink() {
+    public LinksPage clickOnHomeLink() {
         driver.findElement(homeLink).click();
+        return this;
+    }
+
+    public LinksPage clickOnDynamicLink() {
+        driver.findElement(dynamicLink).click();
+        return this;
+    }
+
+    public LinksPage clickOnCreatedLink() {
+        driver.findElement(createdLink).click();
+        return this;
+    }
+
+    public LinksPage getStatusFromNetwork() {
+        DevTools devTools = ((ChromeDriver) driver).getDevTools();
+        devTools.createSession();
+        devTools.send(Network.enable(Optional.of(1000000), Optional.empty(), Optional.empty()));
+        devTools.addListener(Network.responseReceived(), responseReceived -> {
+            System.out.println(responseReceived.getResponse().getStatus());
+        });
+        return this;
+    }
+
+    public MainPage switchtoMainPage() {
         String originalWindow = driver.getWindowHandle();
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-        for (String window : driver.getWindowHandles()) {
-            if(!originalWindow.contentEquals(window)) {
-                driver.switchTo().window(window);
+        try {
+            for (String window : driver.getWindowHandles()) {
+                if(!originalWindow.contentEquals(window)) {
+                    driver.switchTo().window(window);
+                }
             }
+        } catch (Throwable e) {
+            System.out.println(e.getMessage());
         }
-
+        return new MainPage(driver);
     }
 }

@@ -52,5 +52,9 @@ public class MainPage extends BasePage {
         return new GamePage(driver);
     }
 
+    public boolean elementsBtnIsVisible() {
+        return driver.findElement(elementsBtn).isDisplayed();
+    }
+
 
 }
