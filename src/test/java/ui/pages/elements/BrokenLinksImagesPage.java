@@ -1,10 +1,22 @@
 package ui.pages.elements;
 
+import io.qameta.allure.Allure;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.comparison.ImageDiff;
+import ru.yandex.qatools.ashot.comparison.ImageDiffer;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 import ui.BasePage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +53,38 @@ public class BrokenLinksImagesPage extends BasePage {
         } else {
             return false;
         }
+    }
+
+
+    public void assertPictures(String testName) throws IOException {
+       String pathOfScreenshots = createFileForPicture();
+       // + "/" + testName + ".png"
+        Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.simple())
+                .takeScreenshot(driver, driver.findElements(images));
+        File actualScreen = new File(pathOfScreenshots + "/" + testName + ".png");
+        ImageIO.write(screenshot.getImage(), "png", actualScreen);
+        File expectedScreen = new File("src/test/resources/references/expectedImage1.png");
+        compareScreenshots(actualScreen, expectedScreen);
+    }
+
+    private void compareScreenshots(File actualFile, File expectedFile) throws IOException {
+        ImageDiff imageDiff = new ImageDiffer()
+                .makeDiff(ImageIO.read(expectedFile), ImageIO.read(actualFile))
+                .withDiffSizeTrigger(5);
+        if (imageDiff.hasDiff()) {
+            BufferedImage diffImage = imageDiff.getMarkedImage();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(diffImage, "png", byteArrayOutputStream);
+            byte[] image = byteArrayOutputStream.toByteArray();
+            Allure.getLifecycle().addAttachment("diff", "image/png", "png", image);
+        }
+    }
+
+    private String createFileForPicture() {
+        File outputDir = new File("build/screenshots");
+        if (!outputDir.exists()) {
+            outputDir.mkdirs();
+        }
+        return outputDir.getAbsolutePath();
     }
 }
