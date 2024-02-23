@@ -70,6 +70,7 @@ public class BrokenLinksImagesTests {
     }
 
     @Test
+    @Tag("Screenshots")
     @DisplayName("Test")
     public void comparePicturesTest() throws IOException {
         mainPage.clickOnElements().clickBrokenLinksMenu().assertPictures(testName);
