@@ -1,22 +1,13 @@
 package ui.tests;
 
-
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import ru.yandex.qatools.ashot.AShot;
-import ru.yandex.qatools.ashot.Screenshot;
-import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 import ui.pages.MainPage;
 import ui.utils.HTTPRequest;
 
-import javax.imageio.ImageIO;
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +23,7 @@ public class BrokenLinksImagesTests {
     @BeforeEach
     public void setUp(TestInfo testInfo) {
         driver.get("http://85.192.34.140:8081");
-        driver.manage().window().setSize(new Dimension(1920, 1080));
+        driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         mainPage = new MainPage(driver);
@@ -71,13 +62,20 @@ public class BrokenLinksImagesTests {
 
     @Test
     @Tag("Screenshots")
-    @DisplayName("Test")
-    public void comparePicturesTest() throws IOException {
-        mainPage.clickOnElements().clickBrokenLinksMenu().assertPictures(testName);
+    @DisplayName("compare pictures of element")
+    public void comparePicturesScreenshotsTest() throws IOException {
+        boolean imagesIsEqual = mainPage.clickOnElements().clickBrokenLinksMenu().isImagesIsEqual(testName);
+        assertThat(imagesIsEqual).isTrue();
     }
 
-
-
+    @Test
+    @Tag("Screenshots")
+    @DisplayName("compare a whole page screenshot")
+    public void comparePagesScreenshotsTest() throws IOException {
+        boolean pagesIsEqual = mainPage.clickOnElements().clickBrokenLinksMenu().isPagesIsEqual(testName);
+        assertThat(pagesIsEqual).as("screenshots of pages is not equal").isTrue();
+    }
+    
     @AfterEach
     public void cleanUp() {
         driver.quit();
