@@ -19,7 +19,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,42 +58,46 @@ public class BrokenLinksImagesPage extends BasePage {
         }
     }
 
-
-    public void assertPictures(String testName) throws IOException {
-       String pathOfScreenshots = createFileForPicture();
-       // + "/" + testName + ".png"
-        Screenshot screenshot = new AShot()
-                .coordsProvider(new WebDriverCoordsProvider())
-                .takeScreenshot(driver, driver.findElement(validImage));
-        File actualScreen = new File(pathOfScreenshots + "/" + testName + ".png");
-        //File actualScreen1 = new File(pathOfScreenshots + "/" + testName + "1.png");
-        File actualScreen1 = driver.findElement(validImage).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(actualScreen1, new File(pathOfScreenshots + "/" + testName + "1.png"));
-        //BufferedImage image1 = ImageIO.read(actualScreen1);
-        //ImageIO.write(image1, )
-
+    public boolean isPagesIsEqual(String testName) throws IOException {
+        String pathForPagesScreenshots = createFolderForPicture();
+        File expectedScreenshot = new File("src/test/resources/references/pageScreenshot.png");
+        Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(3000))
+                .takeScreenshot(driver);
+        File actualScreen = new File(pathForPagesScreenshots + "/" + testName + ".png");
         ImageIO.write(screenshot.getImage(), "png", actualScreen);
-
-
-        File expectedScreen = new File("src/test/resources/references/expectedImage1.png");
-        compareScreenshots(actualScreen, expectedScreen);
+        return compareScreenshots(actualScreen, expectedScreenshot);
 
     }
 
-    private void compareScreenshots(File actualFile, File expectedFile) throws IOException {
+    public boolean isImagesIsEqual(String testName) throws IOException {
+       String pathOfScreenshots = createFolderForPicture();
+        Screenshot screenshot = new AShot()
+                .coordsProvider(new WebDriverCoordsProvider())
+                .takeScreenshot(driver, driver.findElement(validImage));
+
+        File actualScreen = driver.findElement(validImage).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(actualScreen, new File(pathOfScreenshots + "/" + testName + ".png"));
+        ImageIO.write(screenshot.getImage(), "png", actualScreen);
+        File expectedScreen = new File("src/test/resources/references/expectedImage.png");
+        return compareScreenshots(actualScreen, expectedScreen);
+
+    }
+
+    private boolean compareScreenshots(File actualFile, File expectedFile) throws IOException {
         ImageDiff imageDiff = new ImageDiffer()
-                .makeDiff(ImageIO.read(expectedFile), ImageIO.read(actualFile));
-                // .withDiffSizeTrigger(5);
+                .makeDiff(ImageIO.read(expectedFile), ImageIO.read(actualFile))
+                 .withDiffSizeTrigger(5);
         if (imageDiff.hasDiff()) {
             BufferedImage diffImage = imageDiff.getMarkedImage();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ImageIO.write(diffImage, "png", byteArrayOutputStream);
             byte[] image = byteArrayOutputStream.toByteArray();
             Allure.getLifecycle().addAttachment("diff", "image/png", "png", image);
-        }
+            return false;
+        } else return true;
     }
 
-    private String createFileForPicture() {
+    private String createFolderForPicture() {
         File outputDir = new File("build/screenshots");
         if (!outputDir.exists()) {
             outputDir.mkdirs();
