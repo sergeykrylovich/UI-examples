@@ -22,7 +22,7 @@ public class CheckBoxTests {
     @BeforeEach
     public void setUp() {
         driver.get("http://85.192.34.140:8081");
-        driver.manage().window().setSize(new Dimension(1920, 1080));
+        driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
