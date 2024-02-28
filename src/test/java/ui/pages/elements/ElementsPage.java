@@ -15,8 +15,8 @@ public class ElementsPage extends BasePage {
     private final By buttonsMenu = By.xpath("//li[@id='item-4']//span[text()='Buttons']");
     private final By linksMenu = By.xpath("//li[@id='item-5']//span[text()='Links']");
     private final By brokenLinksMenu = By.xpath("//li[@id='item-6']//span[text()='Broken Links - Images']");
-    private final By uploadDownloadMenu = By.xpath("//li[@id='item-6']//span[text()='Upload and Download']");
-    private final By dynamicPropertiesMenu = By.xpath("//li[@id='item-6']//span[text()='Dynamic Properties']");
+    private final By uploadDownloadMenu = By.xpath("//li[@id='item-7']//span[text()='Upload and Download']");
+    private final By dynamicPropertiesMenu = By.xpath("//li[@id='item-8']//span[text()='Dynamic Properties']");
 
 
 
@@ -66,10 +66,10 @@ public class ElementsPage extends BasePage {
         return new BrokenLinksImagesPage(driver);
     }
 
-    public ElementsPage clickUploadDownloadMenu(WebDriver driver) {
+    public DownloadUploadPage clickUploadDownloadMenu() {
         wait.until(elementToBeClickable(uploadDownloadMenu));
         driver.findElement(uploadDownloadMenu).click();
-        return this;
+        return new DownloadUploadPage(driver);
     }
 
     public ElementsPage clickDynamicPropertiesMenu(WebDriver driver) {
