@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ui.pages.MainPage;
 
+import java.io.File;
 import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,6 +37,23 @@ public class DownloadUploadTests {
                 .getUploadedPathFromPage();
 
         assertThat(actualFileName).isEqualTo(expectedFileName);
+    }
+
+    @Test
+    @Tag("UI")
+    @DisplayName("upload png file to site")
+    public void downloadFileTest() {
+
+        MainPage mainPage = new MainPage(driver);
+        mainPage.clickOnElements()
+                .clickUploadDownloadMenu()
+                .downloadFile();
+
+        File file = new File("build/downloadFiles/sticker.png");
+
+        assertThat(file).isNotEmpty();
+
+
     }
 
     @AfterEach
