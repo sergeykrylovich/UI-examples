@@ -3,20 +3,18 @@ package ui.tests;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import ui.pages.MainPage;
-import ui.utils.Annotations;
+import ui.utils.SetupChromeDriver;
 import ui.utils.HTTPRequest;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-@ExtendWith(Annotations.class)
+@ExtendWith(SetupChromeDriver.class)
 public class BrokenLinksImagesTests {
 
     private WebDriver driver;

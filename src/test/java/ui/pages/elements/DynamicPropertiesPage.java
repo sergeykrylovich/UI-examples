@@ -24,9 +24,11 @@ public class DynamicPropertiesPage extends BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(visibleAfterBtn)).isEnabled();
     }
 
-    public void colorIsChanged() {
-        System.out.println(driver.findElement(colorChangeAfter).getCssValue("color"));
-        //wait.until(x-> driver.findElement(colorChangeAfter).getCssValue("color").equalsIgnoreCase("#dc3545"));
+    public boolean colorIsChanged() {
+        wait.until(x-> driver.findElement(colorChangeAfter).getCssValue("color").equalsIgnoreCase("rgba(220, 53, 69, 1)"));
+        if (driver.findElement(colorChangeAfter).getCssValue("color").equalsIgnoreCase("rgba(220, 53, 69, 1)")) {
+            return true;
+        } else return false;
     }
 
 }
