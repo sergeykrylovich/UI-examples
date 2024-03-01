@@ -50,12 +50,10 @@ public class BrokenLinksImagesPage extends BasePage {
     }
 
     public boolean isGoogleOpen() {
-        List<WebElement> elements = driver.findElements(googleImg);
-        if(elements.size() != 0) {
+        String title = driver.getTitle();
+        if(title.equalsIgnoreCase("google")) {
             return true;
-        } else {
-            return false;
-        }
+        } else return false;
     }
 
     public boolean isPagesIsEqual(String testName) throws IOException {

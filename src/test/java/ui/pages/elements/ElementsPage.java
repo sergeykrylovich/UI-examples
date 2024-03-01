@@ -66,10 +66,10 @@ public class ElementsPage extends BasePage {
         return new BrokenLinksImagesPage(driver);
     }
 
-    public ElementsPage clickUploadDownloadMenu(WebDriver driver) {
+    public DownloadUploadPage clickUploadDownloadMenu() {
         wait.until(elementToBeClickable(uploadDownloadMenu));
         driver.findElement(uploadDownloadMenu).click();
-        return this;
+        return new DownloadUploadPage(driver);
     }
 
     public ElementsPage clickDynamicPropertiesMenu(WebDriver driver) {

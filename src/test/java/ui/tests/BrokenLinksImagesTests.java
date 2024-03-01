@@ -1,10 +1,12 @@
 package ui.tests;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import ui.pages.MainPage;
+import ui.utils.Annotations;
 import ui.utils.HTTPRequest;
 
 import java.io.IOException;
@@ -14,18 +16,19 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+@ExtendWith(Annotations.class)
 public class BrokenLinksImagesTests {
 
-    private WebDriver driver = new ChromeDriver();
+    private WebDriver driver;
     private MainPage mainPage;
     private String testName;
 
     @BeforeEach
     public void setUp(TestInfo testInfo) {
-        driver.get("http://85.192.34.140:8081");
+/*        driver.get("http://85.192.34.140:8081");
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));*/
         mainPage = new MainPage(driver);
         testName = testInfo.getTestMethod().get().getName();
     }
