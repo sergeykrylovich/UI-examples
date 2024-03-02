@@ -35,6 +35,10 @@ public class BasePage {
         return (String) javascriptExecutor.executeScript("return arguments[0].textContent;",
                 driver.findElement(element));
     }
+    public String clickByJs(By element) {
+        return (String) javascriptExecutor.executeScript("arguments[0].click();",
+                driver.findElement(element));
+    }
 
     public void waitPageLoad() {
         By imgMain = By.xpath("//div[@id='app']//a[@href='http://85.192.34.140:8081']");
