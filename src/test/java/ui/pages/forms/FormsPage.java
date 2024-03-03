@@ -89,8 +89,8 @@ public class FormsPage extends BasePage {
         return this;
     }
 
-    public FormsPage fillMobileNumber(int number) {
-        driver.findElement(mobileNumberInput).sendKeys(Integer.toString(number));
+    public FormsPage fillMobileNumber(String mobileNumber) {
+        driver.findElement(mobileNumberInput).sendKeys(mobileNumber);
         return this;
     }
 

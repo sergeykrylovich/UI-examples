@@ -6,15 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import ui.annotations.ChromeSetUp;
 import ui.pages.MainPage;
-import ui.pages.forms.FormsPage;
-import ui.pages.forms.PracticeFormEnum;
-
-import java.time.Year;
 
 import static ui.pages.forms.PracticeFormEnum.*;
 
 @ChromeSetUp
-public class FormTests {
+public class PracticeFormTests {
     private WebDriver driver;
     private MainPage mainPage;
 
@@ -30,11 +26,11 @@ public class FormTests {
         String lastName = "Travolta";
         String email = "JT@google.com";
         Gender gender = Gender.MALE;
-        int number = 33441133;
+        String mobileNumber = "9999999999";
         Months month = Months.JULY;
         int year = 1990;
         int day = 23;
-        String subject = "Phys";
+        String subject = "Physics";
         Hobbies[] hobbies = new Hobbies[]{Hobbies.SPORTS, Hobbies.MUSIC};
         String address = "California";
         States state = States.NCR;
@@ -45,7 +41,7 @@ public class FormTests {
                 .fillFirstName(firstName)
                 .fillLastName(lastName)
                 .selectGender(gender)
-                .fillMobileNumber(number)
+                .fillMobileNumber(mobileNumber)
                 .clickOnDateOfBirth()
                 .selectOfYear(year)
                 .selectOfMonth(month)
@@ -60,7 +56,6 @@ public class FormTests {
 
         Thread.sleep(3000);
 
-        System.out.println(Months.FEBRUARY);
     }
 
     @AfterEach

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import ui.BasePage;
 import ui.pages.elements.ElementsPage;
 import ui.pages.forms.FormsPage;
-import ui.pages.frames.FramesPage;
+import ui.pages.frames.AlertsWindowsFramesPage;
 
 public class MainPage extends BasePage {
 
@@ -32,9 +32,9 @@ public class MainPage extends BasePage {
         return new FormsPage(driver);
     }
 
-    public FramesPage clickOnFrames() {
+    public AlertsWindowsFramesPage clickOnFrames() {
         driver.findElement(framesBtn).click();
-        return new FramesPage(driver);
+        return new AlertsWindowsFramesPage(driver);
     }
 
     public WidgetsPage clickOnWidgets() {

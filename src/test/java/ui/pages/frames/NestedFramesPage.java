@@ -3,9 +3,8 @@ package ui.pages.frames;
 import org.openqa.selenium.WebDriver;
 import ui.BasePage;
 
-public class FramesPage extends BasePage {
-
-    public FramesPage(WebDriver driver) {
+public class NestedFramesPage extends BasePage {
+    public NestedFramesPage(WebDriver driver) {
         super(driver);
     }
 }
