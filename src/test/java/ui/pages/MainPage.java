@@ -6,6 +6,7 @@ import ui.BasePage;
 import ui.pages.elements.ElementsPage;
 import ui.pages.forms.FormsPage;
 import ui.pages.frames.AlertsWindowsFramesPage;
+import ui.pages.widjets.WidgetsPage;
 
 public class MainPage extends BasePage {
 
