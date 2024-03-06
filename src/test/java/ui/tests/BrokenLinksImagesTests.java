@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 
+import ui.annotations.ChromeSetUp;
 import ui.pages.MainPage;
 import ui.utils.SetupChromeDriver;
 import ui.utils.HTTPRequest;
@@ -13,8 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-
-@ExtendWith(SetupChromeDriver.class)
+@ChromeSetUp
 public class BrokenLinksImagesTests {
 
     private WebDriver driver;
@@ -23,10 +23,6 @@ public class BrokenLinksImagesTests {
 
     @BeforeEach
     public void setUp(TestInfo testInfo) {
-/*        driver.get("http://85.192.34.140:8081");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));*/
         mainPage = new MainPage(driver);
         testName = testInfo.getTestMethod().get().getName();
     }
@@ -76,9 +72,5 @@ public class BrokenLinksImagesTests {
         boolean pagesIsEqual = mainPage.clickOnElements().clickBrokenLinksMenu().isPagesIsEqual(testName);
         assertThat(pagesIsEqual).as("screenshots of pages is not equal").isTrue();
     }
-    
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
-    }
+
 }

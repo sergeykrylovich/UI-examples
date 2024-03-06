@@ -41,8 +41,4 @@ public class ModalTests {
         assertThat(modalIsOpen).isTrue();
     }
 
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
-    }
 }

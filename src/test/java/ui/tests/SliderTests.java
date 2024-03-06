@@ -25,8 +25,4 @@ public class SliderTests {
         Thread.sleep(4000);
     }
 
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
-    }
 }

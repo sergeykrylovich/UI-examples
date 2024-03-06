@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import ui.annotations.ChromeSetUp;
 import ui.pages.MainPage;
 
 import java.time.Duration;
@@ -15,17 +16,10 @@ import static org.assertj.core.api.Assertions.*;
 import static ui.pages.elements.CheckBoxPage.CheckBoxes.DOCUMENTS;
 import static ui.pages.elements.CheckBoxPage.CheckBoxes.WORDFILE;
 
+@ChromeSetUp
 public class CheckBoxTests {
 
-    WebDriver driver = new ChromeDriver();
-
-    @BeforeEach
-    public void setUp() {
-        driver.get("http://85.192.34.140:8081");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-    }
+    WebDriver driver;
 
     @Test
     public void testClickOnAllToggleButtons() {
@@ -54,8 +48,4 @@ public class CheckBoxTests {
 
     }
 
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
-    }
 }

@@ -44,9 +44,5 @@ public class FramesTests {
         assertThat(childFrame).isTrue();
     }
 
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
-    }
 
 }

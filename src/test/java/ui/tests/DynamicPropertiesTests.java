@@ -21,7 +21,7 @@ public class DynamicPropertiesTests {
     private MainPage mainPage;
 
     @BeforeEach
-    public void setUp(TestInfo testInfo) {
+    public void setUp() {
         mainPage = new MainPage(driver);
     }
 
@@ -43,8 +43,4 @@ public class DynamicPropertiesTests {
         assertThat(isVisible).isTrue();
     }
 
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
-    }
 }

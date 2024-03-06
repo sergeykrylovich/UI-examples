@@ -58,8 +58,4 @@ public class PracticeFormTests {
 
     }
 
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
-    }
 }

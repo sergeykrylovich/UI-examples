@@ -69,8 +69,5 @@ public class AlertsTests {
         Thread.sleep(3000);
     }
 
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
-    }
+
 }

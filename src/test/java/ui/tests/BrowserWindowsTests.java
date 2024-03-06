@@ -51,8 +51,4 @@ public class BrowserWindowsTests {
         System.out.println(newTabIsOpen);
     }
 
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
-    }
 }
