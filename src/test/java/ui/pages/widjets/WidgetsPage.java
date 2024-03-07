@@ -10,6 +10,7 @@ public class WidgetsPage extends BasePage {
     private final By progressBarMenu = By.xpath("//li[@id='item-4']//span[text()='Progress Bar']");
     private final By toolTipsMenu = By.xpath("//li[@id='item-6']//span[text()='Tool Tips']");
     private final By dropDownMenu = By.xpath("//li[@id='item-7']//span[text()='Menu']");
+    private final By selectMenu = By.xpath("//li[@id='item-8']//span[text()='Select Menu']");
 
     public WidgetsPage(WebDriver driver) {
         super(driver);
@@ -34,5 +35,10 @@ public class WidgetsPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(dropDownMenu));
         driver.findElement(dropDownMenu).click();
         return new DropDownMenuPage(driver);
+    }
+
+    public SelectMenuPage clickOnSelectMenu() {
+        driver.findElement(selectMenu).click();
+        return new SelectMenuPage(driver);
     }
 }
