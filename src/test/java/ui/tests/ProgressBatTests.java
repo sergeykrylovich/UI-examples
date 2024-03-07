@@ -19,7 +19,7 @@ public class ProgressBatTests {
     }
 
     @Test
-    public void progressBarTest() throws InterruptedException {
+    public void progressBarTest() {
         int expectedValueOfProgressBar = 51;
         int actualValueOfProgressBar = mainPage.clickOnWidgets()
                 .clickOnProgressBarMenu()
@@ -27,6 +27,6 @@ public class ProgressBatTests {
                 .clickOnStopByValue(expectedValueOfProgressBar);
 
         assertThat(actualValueOfProgressBar).isEqualTo(expectedValueOfProgressBar);
-        Thread.sleep(3000);
+
     }
 }
