@@ -1,13 +1,11 @@
 package ui.tests;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import ui.pages.InteractionsPage;
 import ui.pages.MainPage;
 
 import java.time.Duration;
