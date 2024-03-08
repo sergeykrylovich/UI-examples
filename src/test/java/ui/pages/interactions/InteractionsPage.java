@@ -7,6 +7,7 @@ import ui.BasePage;
 public class InteractionsPage extends BasePage {
 
     private final By sortableMenu = By.xpath("//li[@id='item-0']//span[text()='Sortable']");
+    private final By resizableMenu = By.xpath("//li[@id='item-2']//span[text()='Resizable']");
     public InteractionsPage(WebDriver driver) {
         super(driver);
     }
@@ -14,5 +15,10 @@ public class InteractionsPage extends BasePage {
     public SortablePage clickOnSortableMenu() {
         driver.findElement(sortableMenu).click();
         return new SortablePage(driver);
+    }
+
+    public ResizablePage clickOnResizableMenu() {
+        driver.findElement(resizableMenu).click();
+        return new ResizablePage(driver);
     }
 }
