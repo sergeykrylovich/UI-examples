@@ -38,4 +38,20 @@ public class ResizableTests {
 
         Thread.sleep(3000);
     }
+
+    @Test
+    public void resizeTest() throws InterruptedException {
+        int offsetX = 300;
+        int offsetY = 400;
+        int expectedX = 200 + offsetX;
+        int expectedY = 200 + offsetY;
+
+        List<String> res = mainPage.clickOnInteractions()
+                .clickOnResizableMenu()
+                .resizeByOffset(offsetX, offsetY);
+
+        assertThat(res).contains(Integer.toString(expectedX), Integer.toString(expectedY));
+
+        Thread.sleep(3000);
+    }
 }
